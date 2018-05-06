@@ -1,6 +1,6 @@
-package modeles
+package referentiel
 
-import modeles.Annonce.AnnonceId
+import referentiel.Annonce.AnnonceId
 
 trait Annonce {
   val id: AnnonceId

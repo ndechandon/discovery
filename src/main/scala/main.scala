@@ -11,6 +11,8 @@ object main {
 
     val url = "http://www.google.com/search?q=httpClient"
 
+    import scala.util.{Success, Try}
+
 
    /* val doc = Jsoup.connect(url)
       .userAgent("Mozilla")

@@ -1,7 +1,7 @@
 package parsers.api
 
-import modeles.Annonce
-import modeles.Annonce.AnnonceId
+import referentiel.Annonce
+import referentiel.Annonce.AnnonceId
 import org.jsoup.nodes.Document
 
 trait AnnonceParser {

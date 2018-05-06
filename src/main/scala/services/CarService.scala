@@ -1,25 +1,24 @@
 package services
 
 import documentClients.ClientDoc
-import modeles.Request
 import parsers.car.CarIndexParser
-import repositories.{AnnonceRepository, Repository}
+import repositories.RequestRepository
 
-import scala.util.Try
+import scala.util.Success
 
-class CarService(clientDoc: ClientDoc, repo:AnnonceRepository ) {
+class CarService(clientDoc: ClientDoc, indexRepo: RequestRepository) {
 
 
-  def getIndex(url:String)= {
+  def getIndex(url: String) = {
+    val doc = clientDoc.get(url)
 
-    val result= for {
-      doc <- clientDoc.get(url)
-      request <- CarIndexParser.extract(doc)
-    } yield request
+    doc match {
+      case Success(t) => {
+        CarIndexParser.extract(t).map(r => indexRepo.store(r))
 
-    result.get.foreach(x => println(x))
+      }
+    }
+
+
   }
-
-
-
 }

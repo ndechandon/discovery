@@ -1,9 +1,9 @@
 package parsers.car
 
-import referentiel.Annonce.AnnonceId
-import referentiel.CarAnnonce
 import org.jsoup.nodes.Document
 import parsers.api.AnnonceParser
+import referentiel.Annonce.AnnonceId
+import referentiel.CarAnnonce
 
 object CarAnnonceParser extends AnnonceParser {
 

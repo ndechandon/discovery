@@ -1,7 +1,7 @@
 package referentiel
 
-import org.json4s.{DefaultFormats, Extraction, Formats}
 import org.json4s.native.JsonMethods._
+import org.json4s.{DefaultFormats, Extraction}
 
 
 trait JsonSerializer[T] {

@@ -1,6 +1,5 @@
 package repositories
 
-import org.json4s.Extraction
 import referentiel.Annonce
 import referentiel.Annonce.AnnonceId
 

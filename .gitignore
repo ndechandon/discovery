@@ -1,5 +1,6 @@
 *.class
 *.log
 .idea/
+/data
 /target
 .DS_Store

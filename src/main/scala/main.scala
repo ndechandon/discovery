@@ -1,6 +1,6 @@
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-
+import services.CarService
+import documentClients.LocalClientDoc
+import repositories.{DataFileSystemPath, RequestRepository}
 
 object main {
 
@@ -9,32 +9,31 @@ object main {
     println("Start program")
 
 
-    val url = "http://www.google.com/search?q=httpClient"
+    //repo
+    val confifPath = new DataFileSystemPath()
+    val requestRepo = new RequestRepository(confifPath)
 
-    import scala.util.{Success, Try}
+    //clients
+    val localClient = new LocalClientDoc()
 
-
-   /* val doc = Jsoup.connect(url)
-      .userAgent("Mozilla")
-      .cookie("auth", "token")
-      .timeout(3000)
-      .get
-    */
-
-    //val input = new Nothing("/tmp/input.html")
+    //services
+    val carService = new CarService(localClient, requestRepo)
 
 
-    //println(title)
-   // println(doc.body())
+    val path = "parsers/car/index.html"
+    val fullPath: String = getClass.getClassLoader.getResource(path).getPath()
 
+    carService.getIndex(fullPath)
 
+//todo
+    // repo local fileSytem
+    // test réel
     // test parsing request
     // affinage parsing annonce remove pub
-    // test réel
-    // repo git
+
     // parsing annonce
     //test réel
-    // repo local fileSytem & SQL
+    // & SQL
     // loger officiel
     // automatisaion import annonce, rattrapage et update on need
     println("End program")

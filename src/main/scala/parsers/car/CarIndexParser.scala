@@ -1,11 +1,10 @@
 package parsers.car
 
-import referentiel.Request
 import org.jsoup.nodes.{Document, Element}
 import parsers.api.IndexParser
+import referentiel.Request
 
 import scala.collection.JavaConversions._
-import scala.util.{Success, Try}
 
 object CarIndexParser extends IndexParser {
 

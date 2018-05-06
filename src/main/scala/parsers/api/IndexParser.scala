@@ -1,10 +1,7 @@
 package parsers.api
 
+import org.jsoup.nodes.Document
 import referentiel.Request
-import org.jsoup.Jsoup
-import org.jsoup.nodes.{Document, Element}
-
-import scala.util.{Failure, Success, Try}
 
 trait IndexParser {
 

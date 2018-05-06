@@ -14,7 +14,11 @@ class CarService(clientDoc: ClientDoc, indexRepo: RequestRepository) {
 
     doc match {
       case Success(t) => {
-        CarIndexParser.extract(t).map(r => indexRepo.store(r))
+        CarIndexParser.extract(t).map { r =>
+          if(r.id.nonEmpty && r.id != "") {
+            indexRepo.store(r)
+          }
+        }
 
       }
     }

@@ -20,3 +20,7 @@ trait JsonSerializer[T] {
 object RequestJsonSerializer extends JsonSerializer[Request]{
 
 }
+
+object AnnonceJsonSerializer extends JsonSerializer[Annonce]{
+
+}

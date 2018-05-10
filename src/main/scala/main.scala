@@ -8,25 +8,14 @@ object main {
   def main(args: Array[String]): Unit = {
     println("Start program")
 
-
     //repo
-    val confifPath = new DataFileSystemPath()
-    val requestRepo = new RequestRepository(confifPath)
 
-    //clients
-    val localClient = new LocalClientDoc()
+    val objectManager = new AppManager
 
-    //services
-    val carService = new CarService(localClient, requestRepo)
-
-
-    val path = "parsers/car/index.html"
-    val fullPath: String = getClass.getClassLoader.getResource(path).getPath()
-
-    carService.getIndex(fullPath)
+    val first = "https://www.leboncoin.fr/voitures/offres/?th=1&location=Chassieu%2069680&pe=6"
+    objectManager.carService.getIndex(first)
 
 //todo
-    // repo local fileSytem
     // test réel
     // test parsing request
     // affinage parsing annonce remove pub

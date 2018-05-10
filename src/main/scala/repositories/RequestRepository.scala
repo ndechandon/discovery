@@ -4,8 +4,7 @@ package repositories
 import referentiel.Request.RequestId
 import referentiel.{Request, RequestJsonSerializer}
 
-import scala.util
-import scala.util.{Failure, Success, Try}
+import scala.util.{Success, Try}
 
 class RequestRepository(datapath: DataFileSystemPath) extends Repository[Request, RequestId] {
 

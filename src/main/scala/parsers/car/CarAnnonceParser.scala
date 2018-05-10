@@ -1,45 +1,35 @@
 package parsers.car
 
+import org.json4s.JsonAST.JValue
+import org.json4s.jackson.JsonMethods._
 import org.jsoup.nodes.Document
+import parsers.JSONParser.{AttributParser, ScriptParser}
 import parsers.api.AnnonceParser
-import referentiel.Annonce.AnnonceId
 import referentiel.CarAnnonce
 
-object CarAnnonceParser extends AnnonceParser {
+object CarAnnonceParser extends AnnonceParser with ScriptParser  {
 
   override def extract(doc: Document): CarAnnonce = {
 
+    val selectElements = getAllScriptTags(doc)
+    val jValueAnnonce = collectElementsToJvalue(selectElements)
+    val attributs = extractAttributs(jValueAnnonce)
+
     CarAnnonce(
-      extractID(doc),
-      extractDate(doc),
-      extractTitle(doc),
-      extractPrice(doc),
-      extractBrand(doc),
-      extractModel(doc),
-      extractRelaseDate(doc),
-      extractMileage(doc),
-      extractFuel(doc),
-      extractGearBox(doc),
-      extractDescription(doc)
+      id = getFromAdview(jValueAnnonce, "list_id"),
+      annonceDate = getFromAdview(jValueAnnonce, "first_publication_date"),
+      title = getFromAdview(jValueAnnonce, "subject"),
+      price = getFromAdview(jValueAnnonce, "price"),
+      brand = getValueFromAttribut(attributs, "brand"),
+      model = getValueFromAttribut(attributs, "model"),
+      relaeseDate = getValueFromAttribut(attributs, "brand"),
+      mileage = getValueFromAttribut(attributs, "mileage"),
+      fuel = getValueFromAttribut(attributs, "fuel"),
+      gearbox = getValueFromAttribut(attributs, "gearbox"),
+      description = getFromAdview(jValueAnnonce, "body")
     )
   }
 
-  override def extractId(document: Document): AnnonceId = ???
-  override def extractAnnonceDate (document: Document): AnnonceId = ???
 
-  def extractID(doc :Document):String = ???
-  def extractDate(doc :Document):String = ???
-  def extractTitle(doc :Document):String = ???
-  def extractPrice(doc :Document):String = ???
-  def extractBrand(doc :Document):String = ???
-  def extractModel(doc :Document):String = ???
-  def extractRelaseDate(doc :Document):String = ???
-  def extractMileage(doc :Document):String = ???
-  def extractFuel(doc :Document):String = ???
-  def extractGearBox(doc :Document):String = ???
-  def extractDescription(doc :Document):String = ???
-
-
-
-
+  def getFromAdview(jsonObject: JValue, key: String) = compact(render(jsonObject \ "adview" \ key))
 }

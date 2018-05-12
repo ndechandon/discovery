@@ -1,7 +1,8 @@
-package referentiel
+package referentiel.annonce
 
 import org.json4s.native.JsonMethods._
 import org.json4s.{DefaultFormats, Extraction}
+import referentiel.Subscriber
 
 
 trait JsonSerializer[T] {
@@ -17,7 +18,8 @@ trait JsonSerializer[T] {
   }
 }
 
-object RequestJsonSerializer extends JsonSerializer[Request]{
+object RequestJsonSerializer extends JsonSerializer[List[Subscriber]]{
+
 
 }
 

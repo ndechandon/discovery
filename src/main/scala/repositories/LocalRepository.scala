@@ -5,11 +5,7 @@ import java.io.{File, FileWriter, PrintWriter}
 import scala.io.Source
 import scala.util.{Failure, Success, Try}
 
-trait Repository[T, ID] {
-
-  def load(id: ID): Try[T]
-
-  def store(e: T): Try[ID]
+trait LocalRepository {
 
   def writeToPath(content: String, path: String): Try[Unit] = {
     val file = new File(path)
@@ -34,6 +30,15 @@ trait Repository[T, ID] {
       case t: Throwable => Failure(t)
     }
 
+  }
+
+  def getListOfFiles(path: String):List[File] = {
+    val d = new File(path)
+    if (d.exists && d.isDirectory) {
+      d.listFiles.filter(_.isFile).toList
+    } else {
+      List[File]()
+    }
   }
 
 }

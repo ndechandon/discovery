@@ -1,28 +1,47 @@
 package services
 
 import documentClients.ClientDoc
-import parsers.car.CarIndexParser
-import repositories.RequestRepository
+import parsers.ShortAnnonceParser
+import parsers.annonce.CarAnnonceParser
+import referentiel.Subscriber
+import repositories.{AnnonceLocalRepository, SubscriberLocalRepository}
 
-import scala.util.Success
+import scala.util.{Failure, Success, Try}
 
-class CarService(clientDoc: ClientDoc, indexRepo: RequestRepository) {
+class CarService(clientDoc: ClientDoc, indexRepo: SubscriberLocalRepository, annonceRepo: AnnonceLocalRepository) {
 
 
-  def getIndex(url: String) = {
+  def getIndex(url: String): List[Subscriber] = {
     val doc = clientDoc.get(url)
+    println("get resquest")
 
     doc match {
       case Success(t) => {
-        CarIndexParser.extract(t).map { r =>
-          if(r.id.nonEmpty && r.id != "") {
-            indexRepo.store(r)
-          }
-        }
-
+        val result = ShortAnnonceParser.extract(t)
+          .filter { r => r.id.nonEmpty && r.id != "" }
+        //result.foreach(indexRepo.store)
+        result
       }
+      case Failure(t) => Nil
+
     }
+  }
+
+  def getAnnonce(requests: List[Subscriber]) = {
 
 
+    requests.map { request =>
+      Thread.sleep(1000)
+      clientDoc.get(s"http:${request.url}").map {
+        doc =>
+          println("get ANNONCE")
+          val annonce = CarAnnonceParser.extract(doc)
+          println(annonce)
+          annonceRepo.store(annonce)
+      }
+
+    }
   }
 }
+
+

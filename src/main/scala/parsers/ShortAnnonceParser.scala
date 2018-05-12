@@ -1,21 +1,21 @@
-package parsers.car
+package parsers
 
 import org.jsoup.nodes.{Document, Element}
-import parsers.api.IndexParser
-import referentiel.Request
+import parsers.api.ShortAnnonceParser
+import referentiel.annonce.ShortAnnonce
 
 import scala.collection.JavaConversions._
 
-object CarIndexParser extends IndexParser {
+object ShortAnnonceParser extends ShortAnnonceParser {
 
-  override def extract(doc: Document): List[Request] = {
+  override def extract(doc: Document): List[ShortAnnonce] = {
     val listAnnonces = getElmentFromDocument(doc)
     //todo get erro
 
     listAnnonces.map { element =>
-      Request(
-        extractURL(element),
-        extractID(element)
+      ShortAnnonce(
+        extractID(element),
+        extractURL(element)
       )
     }
   }

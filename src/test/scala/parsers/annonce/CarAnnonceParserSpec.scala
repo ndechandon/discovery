@@ -1,10 +1,10 @@
-package parsers.car
+package parsers.annonce
 
 import documentClients.LocalClientDoc
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.{BeforeAndAfterAll, FlatSpec, Matchers}
-import referentiel.CarAnnonce
+import referentiel.annonce.CarAnnonce
 
 @RunWith(classOf[JUnitRunner])
 class CarAnnonceParserSpec extends FlatSpec with Matchers with BeforeAndAfterAll {
@@ -12,7 +12,7 @@ class CarAnnonceParserSpec extends FlatSpec with Matchers with BeforeAndAfterAll
   val localClient = new LocalClientDoc()
   val testFile = getClass
     .getClassLoader
-    .getResource("parsers/car/annonce.html")
+    .getResource("parsers/car/voiture.html")
     .getPath
   val testDocument = localClient.get(testFile).get
 

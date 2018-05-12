@@ -1,18 +1,13 @@
 package repositories
 
 import referentiel.Annonce.AnnonceId
-import referentiel.Request.RequestId
 
-class DataFileSystemPath (workingDir :String= System.getProperty("user.dir")) {
+class DataFileSystemPath (workingDir :String= s"${System.getProperty("user.dir")}/data/") {
 
-  val DataPath = s"${workingDir}/data/"
-  val RequestCarPath = s"${DataPath}/car/requests"
-  val AnnonceCarPath = s"${DataPath}/car/annonce"
+  val DataPath = s"${workingDir}"
+  val SubscriberFile = s"${DataPath}/subscriber.json"
+  val AnnonceCarPath = s"${DataPath}/car/annonces"
 
-
-  def requestPathFIle(requestId: RequestId): String = {
-    s"${RequestCarPath}/${requestId}.json"
-  }
 
   def carAnnoncePathFIle(annonceId: AnnonceId): String = {
     s"${AnnonceCarPath}/${annonceId}.json"

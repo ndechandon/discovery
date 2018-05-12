@@ -1,7 +1,10 @@
 package referentiel
 
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 import org.scalatest.{FlatSpec, Matchers}
-
+import referentiel.annonce.JsonSerializer
+@RunWith(classOf[JUnitRunner])
 class JsonSerializerSpec extends FlatSpec with Matchers {
 
   case class TestClass(int: Int, string: String, double: Double, boolean: Boolean)

@@ -1,16 +1,16 @@
 package repositories
 
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 import org.scalatest.{FlatSpec, Matchers}
 
 import scala.util.{Failure, Try}
 
+@RunWith(classOf[JUnitRunner])
+class LocalRepositorySpec extends FlatSpec with Matchers {
 
-class RepositorySpec extends FlatSpec with Matchers {
+  val repo = new LocalRepository {
 
-  val repo = new Repository[String, String] {
-
-    override def load(id: String): Try[String] = ???
-    override def store(e: String): Try[String] = ???
   }
 
   val readFile = getClass

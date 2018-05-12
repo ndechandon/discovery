@@ -1,6 +1,4 @@
-package referentiel
-
-import referentiel.Annonce.AnnonceId
+package referentiel.annonce
 
 
 case class CarAnnonce(
@@ -10,7 +8,6 @@ case class CarAnnonce(
                        price: String,
                        brand: String,
                        model: String,
-                       relaeseDate: String,
                        mileage: String,
                        fuel: String,
                        gearbox: String,

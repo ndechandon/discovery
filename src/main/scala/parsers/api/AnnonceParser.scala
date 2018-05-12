@@ -1,8 +1,8 @@
 package parsers.api
 
 import org.jsoup.nodes.Document
-import referentiel.Annonce
 import referentiel.Annonce.AnnonceId
+import referentiel.annonce.Annonce
 
 trait AnnonceParser {
   def extract(doc :Document):Annonce

@@ -1,6 +1,6 @@
 import services.CarService
 import documentClients.LocalClientDoc
-import repositories.{DataFileSystemPath, RequestRepository}
+import repositories.{DataFileSystemPath, SubscriberLocalRepository}
 
 object main {
 
@@ -12,10 +12,20 @@ object main {
 
     val objectManager = new AppManager
 
-    val first = "https://www.leboncoin.fr/voitures/offres/?th=1&location=Chassieu%2069680&pe=6"
-    objectManager.carService.getIndex(first)
+    val  generator = objectManager.urlCarIndex
+    for ( x <- 1 to 10) {
 
-//todo
+      println(s"INFO : Get Request $x")
+      val requests = objectManager.carService.getIndex(generator.next())
+
+
+      println(s"INFO : Get Annonce $x")
+      objectManager.carService.getAnnonce(requests)
+    }
+
+
+
+
     // test réel
     // test parsing request
     // affinage parsing annonce remove pub

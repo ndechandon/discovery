@@ -2,7 +2,7 @@ package services
 
 import documentClients.LocalClientDoc
 import org.scalatest.{FlatSpec, Matchers}
-import repositories.{DataFileSystemPath, RequestRepository}
+import repositories.{DataFileSystemPath, SubscriberLocalRepository}
 
 class CarServiceSpec extends FlatSpec with Matchers {
 

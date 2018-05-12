@@ -1,4 +1,4 @@
-package parsers.JSONParser
+package parsers.annonce.JsonParser
 
 import documentClients.LocalClientDoc
 import org.json4s.jackson.JsonMethods._
@@ -13,7 +13,7 @@ class AttributParserSpec extends FlatSpec with Matchers {
   val localClient = new LocalClientDoc()
   val testFile = getClass
     .getClassLoader
-    .getResource("parsers/car/annonce.html")
+    .getResource("parsers/car/voiture.html")
     .getPath
   val testDocument = localClient.get(testFile).get
 

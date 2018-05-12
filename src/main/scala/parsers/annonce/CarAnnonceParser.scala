@@ -1,11 +1,11 @@
-package parsers.car
+package parsers.annonce
 
 import org.json4s.JsonAST.JValue
 import org.json4s.jackson.JsonMethods._
 import org.jsoup.nodes.Document
-import parsers.JSONParser.{AttributParser, ScriptParser}
+import parsers.annonce.JsonParser.ScriptParser
 import parsers.api.AnnonceParser
-import referentiel.CarAnnonce
+import referentiel.annonce.CarAnnonce
 
 object CarAnnonceParser extends AnnonceParser with ScriptParser  {
 
@@ -22,7 +22,6 @@ object CarAnnonceParser extends AnnonceParser with ScriptParser  {
       price = getFromAdview(jValueAnnonce, "price"),
       brand = getValueFromAttribut(attributs, "brand"),
       model = getValueFromAttribut(attributs, "model"),
-      relaeseDate = getValueFromAttribut(attributs, "brand"),
       mileage = getValueFromAttribut(attributs, "mileage"),
       fuel = getValueFromAttribut(attributs, "fuel"),
       gearbox = getValueFromAttribut(attributs, "gearbox"),

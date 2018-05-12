@@ -1,4 +1,4 @@
-package parsers.JSONParser
+package parsers.annonce.JsonParser
 
 import org.json4s.JsonAST.JValue
 import org.json4s.jackson.JsonMethods.parse
